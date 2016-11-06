@@ -2,12 +2,21 @@
     <head></head>
     <doby>
     <button onclick="Play()">Play</button>
+    <button onclick="Stop()">Stop</button><br/>
     <script>
         let audioctx = new AudioContext();
         let osc = audioctx.createOscillator();
         osc.connect(audioctx.destination);
         const Play = () => {
+            osc.type = 'sawtooth';
+            // osc.type = 'square';
+            // osc.type='triangle';
+            osc.frequency.value=700;
             osc.start(0);
+        }
+
+        const Stop = () => {
+            osc.stop(0);
         }
     </script>
     </doby>

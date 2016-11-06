@@ -1,0 +1,31 @@
+<html>
+    <head></head>
+    <doby>
+        <button onclick="Play()" id="playsound" disabled>Play</button>
+        <script>
+            var audioctx = new AudioContext();
+            var buffer = null;
+            const Play = () => {
+                var src = audioctx.createBufferSource();
+                src.buffer = buffer;
+                src.connect(audioctx.destination);
+                src.start(0);
+            }
+
+            const LoadSample = (ctx, url) => {
+                var req = new XMLHttpRequest();
+                req.open("GET", url, true);
+                req.responseType = "arraybuffer";
+                req.onload = () => {
+                    if(req.response) {
+                    ctx.decodeAudioData(req.response, (b) => {buffer=b;}, () => {});
+                    document.querySelector("button#playsound").removeAttribute("disabled");
+                    }
+                }
+                req.send();
+            }
+            
+            LoadSample(audioctx, "./snare.wav");
+        </script>
+    </doby>
+</html>
