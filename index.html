@@ -1,0 +1,14 @@
+<html>
+    <head></head>
+    <doby>
+    <button onclick="Play()">Play</button>
+    <script>
+        let audioctx = new AudioContext();
+        let osc = audioctx.createOscillator();
+        osc.connect(audioctx.destination);
+        const Play = () => {
+            osc.start(0);
+        }
+    </script>
+    </doby>
+</html>
